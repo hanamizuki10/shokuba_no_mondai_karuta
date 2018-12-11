@@ -1,9 +1,10 @@
 # shokuba_no_mondai_karuta
 
-職場の問題かるたを、皆と一緒に遊ぶためだけに作成したWindowsアプリケーションです。
-動作検証環境：Windows10Proのみ
+職場の問題かるたを、皆と一緒に遊ぶためだけに作成したWindowsアプリケーションです。<br/>
+動作検証環境：Windows10Proのみ<br/>
+<br/>
 ![](https://github.com/hanamizuki10/shokuba_no_mondai_karuta/blob/master/image/image2_VoidePathSet.PNG?raw=true)
-
+<br/><br/>
 ###  ■補足<br/>
 ・.NETFramework,Version=v4.6.1<br/>
 ・音楽再生には、WindowsAPIのmciSendStringを利用<br/>
