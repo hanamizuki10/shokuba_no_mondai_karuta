@@ -43,7 +43,11 @@
             this.panelFileName = new System.Windows.Forms.Panel();
             this.labelNowFileName = new System.Windows.Forms.Label();
             this.btnReplay = new System.Windows.Forms.Button();
+            this.checkBoxAutoPlay = new System.Windows.Forms.CheckBox();
+            this.textBoxAutoPlayDelaySec = new System.Windows.Forms.Label();
+            this.numericUpDownAutoPlayDelay = new System.Windows.Forms.NumericUpDown();
             this.panelFileName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAutoPlayDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSetVoice
@@ -178,13 +182,51 @@
             this.btnReplay.UseVisualStyleBackColor = true;
             this.btnReplay.Click += new System.EventHandler(this.btnReplay_Click);
             // 
+            // checkBoxAutoPlay
+            // 
+            this.checkBoxAutoPlay.AutoSize = true;
+            this.checkBoxAutoPlay.Checked = true;
+            this.checkBoxAutoPlay.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxAutoPlay.Location = new System.Drawing.Point(202, 117);
+            this.checkBoxAutoPlay.Name = "checkBoxAutoPlay";
+            this.checkBoxAutoPlay.Size = new System.Drawing.Size(89, 19);
+            this.checkBoxAutoPlay.TabIndex = 13;
+            this.checkBoxAutoPlay.Text = "自動再生";
+            this.checkBoxAutoPlay.UseVisualStyleBackColor = true;
+            this.checkBoxAutoPlay.CheckStateChanged += new System.EventHandler(this.checkBoxAutoPlay_CheckStateChanged);
+            // 
+            // textBoxAutoPlayDelaySec
+            // 
+            this.textBoxAutoPlayDelaySec.AutoSize = true;
+            this.textBoxAutoPlayDelaySec.Location = new System.Drawing.Point(363, 119);
+            this.textBoxAutoPlayDelaySec.Name = "textBoxAutoPlayDelaySec";
+            this.textBoxAutoPlayDelaySec.Size = new System.Drawing.Size(22, 15);
+            this.textBoxAutoPlayDelaySec.TabIndex = 15;
+            this.textBoxAutoPlayDelaySec.Text = "秒";
+            // 
+            // numericUpDownAutoPlayDelay
+            // 
+            this.numericUpDownAutoPlayDelay.Location = new System.Drawing.Point(297, 114);
+            this.numericUpDownAutoPlayDelay.Name = "numericUpDownAutoPlayDelay";
+            this.numericUpDownAutoPlayDelay.Size = new System.Drawing.Size(60, 22);
+            this.numericUpDownAutoPlayDelay.TabIndex = 16;
+            this.numericUpDownAutoPlayDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownAutoPlayDelay.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 442);
-            this.Controls.Add(this.btnReplay);
             this.Controls.Add(this.panelFileName);
+            this.Controls.Add(this.numericUpDownAutoPlayDelay);
+            this.Controls.Add(this.textBoxAutoPlayDelaySec);
+            this.Controls.Add(this.checkBoxAutoPlay);
+            this.Controls.Add(this.btnReplay);
             this.Controls.Add(this.labelPlayTime);
             this.Controls.Add(this.progressBarPlayTime);
             this.Controls.Add(this.labelListBoxChoiceVoiceCount);
@@ -199,6 +241,7 @@
             this.Name = "Form1";
             this.Text = "職場の問題かるた";
             this.panelFileName.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAutoPlayDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,6 +264,9 @@
         private System.Windows.Forms.Panel panelFileName;
         private System.Windows.Forms.Label labelNowFileName;
         private System.Windows.Forms.Button btnReplay;
+        private System.Windows.Forms.CheckBox checkBoxAutoPlay;
+        private System.Windows.Forms.Label textBoxAutoPlayDelaySec;
+        private System.Windows.Forms.NumericUpDown numericUpDownAutoPlayDelay;
     }
 }
 

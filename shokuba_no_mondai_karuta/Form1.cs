@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+
 namespace shokuba_no_mondai_karuta
 {
     public partial class Form1 : Form
@@ -38,6 +39,11 @@ namespace shokuba_no_mondai_karuta
         /// 再生モード（"not ready", "paused", "playing", "stopped", ""）
         /// </summary>
         private string _musicPlayMode = "";
+
+        /// <summary>
+        /// 自動再生モード
+        /// </summary>
+        private bool _isAutoPlay = false;
         public Form1()
         {
             InitializeComponent();
@@ -53,6 +59,7 @@ namespace shokuba_no_mondai_karuta
                 labelVoicePath.Text = "なし";
             }
             btnReplay.Enabled = false;
+            _isAutoPlay = false;
         }
 
 
@@ -222,20 +229,28 @@ namespace shokuba_no_mondai_karuta
                             // 中断発生
                             break;
                         }
-                        Task.Delay(500);    // 100ミリ秒遅延
+                        Task.Delay(500);    // 500ミリ秒遅延
                     }
                     this.Invoke((Action)(() =>
                     {
+                        closeFileNamePanel();
                         if ("".Equals(_musicPlayMode))
                         {
+                            // 意図的に中断
                             labelPlayTime.Text = "Mode： stopped, Time： " + _musicPosition + " / " + _musicLength + " ms";
+                            // 自動再生させない。
+                            _isAutoPlay = false;
                         }
                         else
                         {
                             progressBarPlayTime.Value = _musicLength;
                             labelPlayTime.Text = "Mode： stopped, Time： " + _musicLength + " / " + _musicLength + " ms";
+
+                            if (checkBoxAutoPlay.Checked)
+                            {
+                                _isAutoPlay = true;
+                            }
                         }
-                        closeFileNamePanel();
                     }));
 
                 }
@@ -295,6 +310,31 @@ namespace shokuba_no_mondai_karuta
                     mciSendString(cmd, null, 0, IntPtr.Zero);
                     cmd = "close " + _aliasName;
                     mciSendString(cmd, null, 0, IntPtr.Zero);
+
+
+                    // 自動再生がOnになっていた場合
+                    // →ランダム再生抜出→を実行させる。
+                    if (_isAutoPlay)
+                    {
+                        int intVal = Decimal.ToInt32(numericUpDownAutoPlayDelay.Value);
+
+
+                        // 1秒後に処理を実行
+                        Timer timer = new Timer();
+                        timer.Interval = intVal * 1000;
+                        timer.Tick += (s, args) =>
+                        {
+                            // タイマーの停止
+                            timer.Stop();
+
+                            // 以下に待機後の処理を書く
+                            buttonRandomChoice.PerformClick();
+                            timer.Stop();
+                        };
+                        timer.Start();
+                    }
+
+
                 }
             }
             base.WndProc(ref m);
@@ -394,6 +434,19 @@ namespace shokuba_no_mondai_karuta
         {
             //直前の再生ファイル名を再生
             play(_musicFilePath);
+        }
+
+        private void checkBoxAutoPlay_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAutoPlay.Checked)
+            {
+                numericUpDownAutoPlayDelay.Enabled = true;
+            }
+            else
+            {
+                numericUpDownAutoPlayDelay.Enabled = false;
+
+            }
         }
     }
 }
