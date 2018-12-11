@@ -6,6 +6,7 @@
 ![](https://github.com/hanamizuki10/shokuba_no_mondai_karuta/blob/master/image/image2_VoidePathSet.PNG?raw=true)
 <br/><br/>
 ###  ■補足<br/>
+・開発環境：Visual Studio 2017 <br/>
 ・.NETFramework,Version=v4.6.1<br/>
 ・音楽再生には、WindowsAPIのmciSendStringを利用<br/>
 ・あらかじめ、[職場の問題かるた](http://gihyo.jp/book/sp/karuta/shokuba)からvoice.zipをダウンロードし、任意のフォルダに展開しておく必要あり。<br/>
